@@ -5,23 +5,28 @@ int main(){
     char s[100],cnt=0;
     scanf("%s", &s);
     for(int i = 0; i < strlen(s); i++){
-        switch (s[i+1])
-        {
-        case '=':
-            if(s[i]=='c'||s[i]=='s'||s[i]=='z'||s[i]=='z'&&s[i-1]=='d'){
+        if(s[i]=='c'){
+            if(s[i+1]=='='||s[i+1]=='-'){
+                cnt++;
+                i++;
+            }else{
                 cnt++;
             }
-            break;
-        case '-':
-            if(s[i]=='c'||s[i]=='d'){
+        }else if(s[i]=='d'){
+            if(s[i+1]=='-'){
+                cnt++;
+                i++;
+            }else if(s[i+1]=='z'&&s[i+2]=='='){
+                cnt++;
+                i+=2;
+            }else{
                 cnt++;
             }
-            break;
-        case 'j':
-            if(s[i]=='l'||s[i]=='n'){
-                cnt++;
-            }
-            break;
+        }else if(s[i]=='l'&&s[i+1]=='j'||s[i]=='n'&&s[i+1]=='j'||s[i]=='s'&&s[i+1]=='='||s[i]=='z'&&s[i+1]=='='){
+            cnt++;
+            i++;
+        }else{
+            cnt++;
         }
     }
     printf("%d", cnt);
